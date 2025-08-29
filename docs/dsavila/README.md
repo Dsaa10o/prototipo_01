@@ -3,7 +3,7 @@
 problematica :Un compañero de trabajo le puso billetes falsos en la caja registradora a mi familiar y además le cambió las horas laborales en el sistema, con la intención de perjudicarlo y hacerlo ver como responsable de algo que no cometió.
 
 # Arbol de problemas
-
+```mermaid
 A[Problema central: Un compañero mete plata falsa y modifica horas laborales]
 B[Causas]
 C[Consecuencias]
@@ -20,6 +20,7 @@ C --> C1[Pérdida de dinero para el negocio]
 C --> C2[Dificultad para saber responsables]
 C --> C3[Mal ambiente laboral por desconfianza]
 C --> C4[Riesgo legal y sanciones]
+```
 
 # prompt
 
