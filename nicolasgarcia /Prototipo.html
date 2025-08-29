@@ -1,1 +1,88 @@
-
+ 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguridad Motera</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #map { height: 90vh; width: 100%; }
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+    }
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-sos { background: #e63946; }
+    .btn-alert { background: #457b9d; }
+  </style>
+  <!-- Cargar Leaflet (mapas) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="buttons">
+    <button class="btn-sos" onclick="sendSOS()">🚨 Enviar SOS</button>
+    <button class="btn-alert" onclick="sendAlert()">⚠️ Enviar Alerta</button>
+  </div>
+ 
+  <script>
+    let map, userMarker;
+    let alerts = [];
+ 
+    // Inicializa mapa
+    function initMap(lat, lng) {
+      map = L.map('map').setView([lat, lng], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+ 
+      userMarker = L.marker([lat, lng], { title: "Mi ubicación" }).addTo(map);
+    }
+ 
+    // Obtiene ubicación actual
+    navigator.geolocation.getCurrentPosition(pos => {
+      const { latitude, longitude } = pos.coords;
+      initMap(latitude, longitude);
+    }, err => {
+      alert("No se pudo acceder a la ubicación.");
+    });
+ 
+    function sendSOS() {
+      if (userMarker) {
+        const { lat, lng } = userMarker.getLatLng();
+        L.marker([lat, lng], { title: "SOS", icon: redIcon }).addTo(map);
+        alert("🚨 SOS enviado a la comunidad.");
+      }
+    }
+ 
+    function sendAlert() {
+      if (userMarker) {
+        const { lat, lng } = userMarker.getLatLng();
+        L.marker([lat, lng], { title: "Alerta", icon: yellowIcon }).addTo(map);
+        alert("⚠️ Alerta enviada a la comunidad.");
+      }
+    }
+ 
+    // Íconos personalizados
+    const redIcon = L.icon({
+      iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+      iconSize: [32, 32],
+    });
+ 
+    const yellowIcon = L.icon({
+      iconUrl: "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+      iconSize: [32, 32],
+    });
+  </script>
+</body>
+</html>
