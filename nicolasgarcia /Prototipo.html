@@ -1,88 +1,181 @@
- 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seguridad Motera</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; }
-    #map { height: 90vh; width: 100%; }
-    .buttons {
-      display: flex;
-      justify-content: space-around;
-      padding: 10px;
-    }
-    button {
-      padding: 12px 18px;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .btn-sos { background: #e63946; }
-    .btn-alert { background: #457b9d; }
-  </style>
-  <!-- Cargar Leaflet (mapas) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rutas & Eventos Moteros y Deportistas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: #f0f2f5;
+            color: #333;
+        }
+        header {
+            background: #222831;
+            color: #eeeeee;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+        nav {
+            background: #393e46;
+            display: flex;
+            justify-content: center;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: #eeeeee;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #00adb5;
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        section {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+        }
+        h2 {
+            color: #222831;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #00adb5;
+            padding-bottom: 0.5rem;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin: 0.6rem 0;
+            font-size: 1.1rem;
+        }
+        footer {
+            background: #222831;
+            color: #eeeeee;
+            text-align: center;
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+        }
+        /* Botón simple */
+        button {
+            background-color: #00adb5;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background-color: #028a94;
+        }
+        /* Formulario simple */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 0.5rem 0 0.2rem 0;
+            font-weight: 600;
+        }
+        input, select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="map"></div>
-  <div class="buttons">
-    <button class="btn-sos" onclick="sendSOS()">🚨 Enviar SOS</button>
-    <button class="btn-alert" onclick="sendAlert()">⚠️ Enviar Alerta</button>
-  </div>
- 
-  <script>
-    let map, userMarker;
-    let alerts = [];
- 
-    // Inicializa mapa
-    function initMap(lat, lng) {
-      map = L.map('map').setView([lat, lng], 15);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
- 
-      userMarker = L.marker([lat, lng], { title: "Mi ubicación" }).addTo(map);
-    }
- 
-    // Obtiene ubicación actual
-    navigator.geolocation.getCurrentPosition(pos => {
-      const { latitude, longitude } = pos.coords;
-      initMap(latitude, longitude);
-    }, err => {
-      alert("No se pudo acceder a la ubicación.");
-    });
- 
-    function sendSOS() {
-      if (userMarker) {
-        const { lat, lng } = userMarker.getLatLng();
-        L.marker([lat, lng], { title: "SOS", icon: redIcon }).addTo(map);
-        alert("🚨 SOS enviado a la comunidad.");
-      }
-    }
- 
-    function sendAlert() {
-      if (userMarker) {
-        const { lat, lng } = userMarker.getLatLng();
-        L.marker([lat, lng], { title: "Alerta", icon: yellowIcon }).addTo(map);
-        alert("⚠️ Alerta enviada a la comunidad.");
-      }
-    }
- 
-    // Íconos personalizados
-    const redIcon = L.icon({
-      iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
-      iconSize: [32, 32],
-    });
- 
-    const yellowIcon = L.icon({
-      iconUrl: "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
-      iconSize: [32, 32],
-    });
-  </script>
+    <header>
+        <h1>Rutas & Eventos Moteros y Deportistas</h1>
+        <p>Descubre rutas increíbles, eventos deportivos y conecta con la comunidad</p>
+    </header>
+    <nav>
+        <a href="#rutas">Rutas</a>
+        <a href="#eventos">Eventos</a>
+        <a href="#comunidad">Comunidad</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+    <main>
+        <section id="rutas">
+            <h2>Rutas Personalizadas para Motos y Entrenamientos</h2>
+            <p>Explora rutas diseñadas especialmente para moteros y deportistas. Filtra por dificultad, duración y tipo de actividad.</p>
+            <ul>
+                <li><strong>Ruta 1:</strong> Montañas y lagos - 50 km</li>
+                <li><strong>Ruta 2:</strong> Circuito urbano para entrenamiento - 20 km</li>
+                <li><strong>Ruta 3:</strong> Camino costero con vistas increíbles - 70 km</li>
+            </ul>
+            <button onclick="alert('Próximamente podrás crear tu propia ruta personalizada!')">Crear Ruta Personalizada</button>
+        </section>
+
+        <section id="eventos">
+            <h2>Eventos Cercanos</h2>
+            <p>Únete a eventos deportivos y encuentros de motos en tu ciudad o región.</p>
+            <ul>
+                <li><strong>Entrenamiento grupal en el parque central</strong> - Sábado 10 AM</li>
+                <li><strong>Encuentro de moteros - Ruta nocturna</strong> - Viernes 7 PM</li>
+                <li><strong>Carrera amateur de ciclismo</strong> - Domingo 8 AM</li>
+            </ul>
+            <button onclick="alert('Regístrate para participar en eventos!')">Registrarse a Eventos</button>
+        </section>
+
+        <section id="comunidad">
+            <h2>Comunidad</h2>
+            <p>Comparte tus experiencias, fotos y recomendaciones con otros usuarios.</p>
+            <ul>
+                <li>JuanMoto: "La ruta costera tiene paisajes espectaculares, ¡recomendadísima!"</li>
+                <li>AnaFit: "Los entrenamientos grupales me motivan mucho, excelente ambiente."</li>
+                <li>CarlosRutas: "Sería genial incluir rutas para principiantes también."</li>
+            </ul>
+            <button onclick="alert('Función de comunidad en desarrollo.')">Únete a la Comunidad</button>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>¿Tienes dudas o quieres sugerir algo? Escríbenos.</p>
+            <form onsubmit="event.preventDefault(); alert('Gracias por contactarnos!');">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" required />
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" required />
+
+                <label for="mensaje">Mensaje:</label>
+                <input type="text" id="mensaje" required />
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Rutas & Eventos Moteros y Deportistas. Todos los derechos reservados.
+    </footer>
 </body>
 </html>
+
