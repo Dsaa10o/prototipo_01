@@ -23,7 +23,7 @@ C --> C4[Riesgo legal y sanciones]
 ```
 
 # prompt
-
+```mermaid
 # Arbol de soluciones
 
 A[Solución central: Implementar un sistema seguro de caja y horarios]
@@ -45,6 +45,7 @@ C --> C2[Mayor confianza y transparencia]
 C --> C3[Control claro de horas trabajadas]
 C --> C4[Mejor ambiente laboral]
 C --> C5[Negocio más seguro legalmente]
+```
 
 # soluciones tecnologicas 
 
