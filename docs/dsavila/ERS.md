@@ -41,4 +41,35 @@ Este Documento ayuda a que los artistas sean ma reconocido he implementar errami
 ### 1.5
 ### 1.6
 ### Diagrama Contexto
+```mermaid 
+flowchart TD
+    %% Problema central
+    P["Problema central:<br/>Dificultad de artistas para vender obras sin altas comisiones o intermediarios"]
+
+    %% Causas principales
+    C1["Dependencia de intermediarios (galerías, agentes)"]
+    C2["Altas comisiones en plataformas tradicionales"]
+    C3["Falta de un catálogo profesional en línea"]
+    C4["Pocas opciones tecnológicas accesibles para artistas"]
+    C5["Dificultad para llegar a un público amplio"]
+
+    %% Efectos
+    E1["Menores ingresos para los artistas"]
+    E2["Limitada visibilidad de obras y talentos emergentes"]
+    E3["Pérdida de autonomía comercial del artista"]
+    E4["Desigualdad en oportunidades de venta"]
+    E5["Menor profesionalización en la gestión de su arte"]
+
+    %% Relaciones
+    C1 --> P
+    C2 --> P
+    C3 --> P
+    C4 --> P
+    C5 --> P
+
+    P --> E1
+    P --> E2
+    P --> E3
+    P --> E4
+```
 
