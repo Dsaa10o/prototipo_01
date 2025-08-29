@@ -40,3 +40,5 @@ Este Documento ayuda a que los artistas sean ma reconocido he implementar errami
 
 ### 1.5
 ### 1.6
+### Diagrama Contexto
+
