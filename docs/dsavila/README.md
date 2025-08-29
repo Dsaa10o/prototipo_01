@@ -4,48 +4,29 @@ problematica :Un compañero de trabajo le puso billetes falsos en la caja regist
 
 # Arbol de problemas
 ```mermaid
-A[Problema central: Un compañero mete plata falsa y modifica horas laborales]
-B[Causas]
-C[Consecuencias]
+graph TD
+    A[Problema central: Un compañero mete plata falsa y modifica horas laborales]
+    B[Causas]
+    C[Consecuencias]
 
-A --> B
-A --> C
+    A --> B
+    A --> C
 
-B --> B1[No hay sistema que valide autenticidad del dinero]
-B --> B2[Falta de controles digitales en la caja]
-B --> B3[Permite cambios manuales sin trazabilidad]
-B --> B4[Ausencia de auditorías o alertas]
+    B --> B1[No hay sistema que valide autenticidad del dinero]
+    B --> B2[Falta de controles digitales en la caja]
+    B --> B3[Permite cambios manuales sin trazabilidad]
+    B --> B4[Ausencia de auditorías o alertas]
 
-C --> C1[Pérdida de dinero para el negocio]
-C --> C2[Dificultad para saber responsables]
-C --> C3[Mal ambiente laboral por desconfianza]
-C --> C4[Riesgo legal y sanciones]
+    C --> C1[Pérdida de dinero para el negocio]
+    C --> C2[Dificultad para saber responsables]
+    C --> C3[Mal ambiente laboral por desconfianza]
+    C --> C4[Riesgo legal y sanciones]
+
+
 ```
+# Promp
 
-# prompt
-```mermaid
-# Arbol de soluciones
-
-A[Solución central: Implementar un sistema seguro de caja y horarios]
-B[Acciones]
-C[Resultados]
-
-A --> B
-A --> C
-
-B --> B1[Software con historial de transacciones]
-B --> B2[Validador de billetes integrado]
-B --> B3[Roles y permisos por usuario]
-B --> B4[Alertas automáticas ante irregularidades]
-B --> B5[Reportes diarios de caja y horas]
-B --> B6[Capacitación del personal]
-
-C --> C1[Menos fraudes y pérdidas]
-C --> C2[Mayor confianza y transparencia]
-C --> C3[Control claro de horas trabajadas]
-C --> C4[Mejor ambiente laboral]
-C --> C5[Negocio más seguro legalmente]
-```
+quiero que me ayude acrea 3 ideas de negocio que puedas implementar como ingeniero de sistemas,  el negocio ba dirigido apersonas que pintan o hacen musica quero quemed9igas que problemas resauelves y como es la dinamicas.
 
 # soluciones tecnologicas 
 
